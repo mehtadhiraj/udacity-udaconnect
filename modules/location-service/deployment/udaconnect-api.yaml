@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: udaconnect-locations
+  name: udaconnect-locations
+spec:
+  ports:
+  - name: "5005"
+    port: 5005
+    targetPort: 5005
+    nodePort: 30003
+  selector:
+    service: udaconnect-locations
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: udaconnect-locations
+  name: udaconnect-locations
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: udaconnect-locations
+  template:
+    metadata:
+      labels:
+        service: udaconnect-locations
+    spec:
+      containers:
+      - image: mehtadhiraj/udaconnect-locations:latest
+        name: udaconnect-locations
+        imagePullPolicy: Always
+        env:
+        - name: KAFKA_URL
+          valueFrom:
+            configMapKeyRef:
+              name: locations-env
+              key: KAFKA_URL
+        - name: KAFKA_TOPIC
+          valueFrom:
+            configMapKeyRef:
+              name: locations-env
+              key: KAFKA_TOPIC
+      restartPolicy: Always
