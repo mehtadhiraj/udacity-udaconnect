@@ -1,0 +1,112 @@
+openapi: 3.0.0
+info:
+  title: Person API specs
+paths:
+  /api/persons:
+    get:
+      tags:
+      - get person info
+      description: Get information of all the persons in the system
+      operationId: getPersons
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Person'
+        "400":
+          description: bad request
+        "404":
+          description: not found
+    post:
+      tags:
+      - create person
+      summary: creates person record
+      description: Add a new perosn in the system.
+      operationId: adPerson
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonWithNoId'
+        required: true
+      responses:
+        "201":
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Person'
+        "400":
+          description: bad request
+  /api/persons/{personId}:
+    get:
+      tags:
+      - fetch person by id
+      summary: Fetch perosn details using id.
+      description: Fetch perosn details using id.
+      operationId: fetchPersonById
+      parameters:
+      - name: personId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Person'
+        "400":
+          description: bad request
+        "404":
+          description: not found
+components:
+  schemas:
+    PersonWithNoId:
+      required:
+      - company_name
+      - first_name
+      - last_name
+      type: object
+      properties:
+        first_name:
+          type: string
+          example: Dhiraj
+        last_name:
+          type: string
+          example: Mehta
+        company_name:
+          type: string
+          example: Udacity
+    Person:
+      required:
+      - company_name
+      - first_name
+      - id
+      - last_name
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        first_name:
+          type: string
+          example: Dhiraj
+        last_name:
+          type: string
+          example: Mehta
+        company_name:
+          type: string
+          example: Udacity

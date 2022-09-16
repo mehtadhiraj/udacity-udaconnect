@@ -1,0 +1,15 @@
+Frontend, Persons and Connections services uses REST APIS for message passing. 
+ - As REST APIS are generaly used to fetch the resources. We do not need to have persistent connections with the server. 
+   Hence decided to have a REST APIS for the mentioned services. 
+
+Location service excepts gRPC connections and produce kafka messages
+ - gRPC is great for real time exchange of data and also help us maintain the connection without further TCP handshakes. 
+   As people move, location changes hence we can send the location from a client device to service in real time. 
+   Also location can be send concurrently by loads of users. Hence gRPC can be of help here. 
+- As there are concurrent submissions on location service, processing data one by one is not a feasible solution. Hence its better
+  to publish the message on Kafka and necessary service will consume the data and process them.
+
+Event consumer service consumes kafka event. 
+ - This service responsibility is to consume Kafka event and process them as per the need. 
+   Here it consumes the location data. We can further store these data by making an HTTP call to connections service. 
+   Hence this service can be an interface between kafka events and other services. 

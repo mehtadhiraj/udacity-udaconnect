@@ -1,0 +1,136 @@
+{
+	"info": {
+		"_postman_id": "1da093e9-ae99-4581-b104-e06d1b618943",
+		"name": "Udacity udaconnect",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12620930"
+	},
+	"item": [
+		{
+			"name": "GET Persons",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:30001/api/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "30001",
+					"path": [
+						"api",
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Perosn by ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:30001/api/persons/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "30001",
+					"path": [
+						"api",
+						"persons",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Person",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"first_name\": \"Dhiraj\",\n    \"last_name\": \"Mehta\",\n    \"company_name\": \"Udacity\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:30001/api/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "30001",
+					"path": [
+						"api",
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Connections",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:30000/api/persons/1/connection?distance=5&end_date=2022-12-30&start_date=2000-12-30",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "30000",
+					"path": [
+						"api",
+						"persons",
+						"1",
+						"connection"
+					],
+					"query": [
+						{
+							"key": "distance",
+							"value": "5"
+						},
+						{
+							"key": "end_date",
+							"value": "2022-12-30"
+						},
+						{
+							"key": "start_date",
+							"value": "2000-12-30"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
