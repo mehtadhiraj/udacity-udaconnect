@@ -9,7 +9,6 @@ print("Coordinates sending...")
 channel = grpc.insecure_channel("127.0.0.1:30003")
 stub = locations_pb2_grpc.LocationServiceStub(channel)
 
-# Update this with desired payload
 location1 = locations_pb2.LocationMessage(
     person_id=7,
     longitude=10,

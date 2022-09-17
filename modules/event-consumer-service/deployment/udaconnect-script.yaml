@@ -22,11 +22,36 @@ spec:
         - name: KAFKA_URL
           valueFrom:
             configMapKeyRef:
-              name: locations-env
+              name: consumer-env
               key: KAFKA_URL
         - name: KAFKA_TOPIC
           valueFrom:
             configMapKeyRef:
               name: locations-env
               key: KAFKA_TOPIC
+        - name: DB_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: connections-db-env
+              key: DB_USERNAME
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: connections-db-secret
+              key: DB_PASSWORD
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: connections-db-env
+              key: DB_NAME
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: connections-db-env
+              key: DB_HOST
+        - name: DB_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: connections-db-env
+              key: DB_PORT
       restartPolicy: Always
